@@ -11,8 +11,6 @@ public class Main {
         PathManager test = new PathManager();
         //test.testFilePath();
         test.testFilePath(new File("src\\de.company.filepathhelper\\data\\PathManager.java"));
-        test.pathAbsoluteOrRelative();
-
-
+        test.makeRelativePathAbsolute();
     }
 }

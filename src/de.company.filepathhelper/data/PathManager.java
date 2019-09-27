@@ -37,7 +37,7 @@ public class PathManager {
         this.testPath = file;
     }
 
-    public void pathAbsoluteOrRelative() {
+    public void makeRelativePathAbsolute() {
         String filePath = Paths.get(String.valueOf(testPath)).toString();
         System.out.println(filePath);
 
@@ -47,8 +47,5 @@ public class PathManager {
 //        }
 
     }
-
-
-
 }
 
