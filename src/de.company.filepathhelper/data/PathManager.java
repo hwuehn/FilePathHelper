@@ -42,10 +42,17 @@ public class PathManager {
         System.out.println(filePath);
 
         // C:\Users\itk20user\Projekte\FilePathHelper\src\de.company.filepathhelper\data
-//        while (s.hasNext()) {
-//            filePath = s.
-//        }
+        while (s.hasNext()) {
+            filePath = s.next();
+            if (filePath != null) {
+                filePath = s.findInLine("~").replace("~", "C:\\Users\\itk20user");
+                filePath = s.findInLine(".").replace(".", "C:\\Users\\itk20user\\Projekte\\FilePathHelper");
+                filePath = s.findInLine("..").replace("..", "C:\\Users\\itk20user\\Projekte\\FilePathHelper\\main.java");
+            }
 
+        }
+        this.testPath = file;
+        System.out.println(filePath);
     }
 }
 
