@@ -7,11 +7,21 @@ import java.util.Scanner;
 
 public class PathManager {
 
-    public File testPath;
+    public File file = null;
+    public File testPath = null;
+    public Scanner s = null;
+
+    public void testFilePath(File file) {
+        try {
+            this.file = file;
+            s = new Scanner(file);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        this.testPath = file;
+    }
 
     public void testFilePath() {
-        Scanner s = null;
-        File file = null;
         try {
             file = new File("src\\de.company.filepathhelper\\data\\PathManager.java");
             s = new Scanner(file);
@@ -28,8 +38,13 @@ public class PathManager {
     }
 
     public void pathAbsoluteOrRelative() {
-        String fileName = Paths.get(String.valueOf(testPath)).toString();
-        System.out.println(fileName);
+        String filePath = Paths.get(String.valueOf(testPath)).toString();
+        System.out.println(filePath);
+
+        // C:\Users\itk20user\Projekte\FilePathHelper\src\de.company.filepathhelper\data
+//        while (s.hasNext()) {
+//            filePath = s.
+//        }
 
     }
 
