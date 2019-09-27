@@ -3,6 +3,8 @@ package data;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.nio.file.Paths;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 public class PathManager {
@@ -54,5 +56,28 @@ public class PathManager {
         this.testPath = file;
         System.out.println(filePath);
     }
-}
 
+    public void pathBuilder() {
+
+        List<Integer> list = Arrays.asList(1, -1, -1, 4);
+        List<Integer> list2 = ListTool.invertUsingStreams(list);
+        list2.stream().forEach(System.out::println);
+
+        String del = "/";
+        String path = "";
+        boolean flag = false;
+        for (int i : list2) {
+            String what = String.valueOf(i);
+            String delXX = del;
+            if (i == -1) {
+                flag = true;
+            }
+            if (flag) {
+                flag = false;
+                what = "";
+                delXX = "";
+            }
+            path = path + delXX + what;
+        }
+    }
+}
