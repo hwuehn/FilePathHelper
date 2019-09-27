@@ -8,6 +8,7 @@ public class Main {
 
         PathManager test = new PathManager();
         test.testFilePath();
+        test.pathAbsoluteOrRelative();
 
 
     }
