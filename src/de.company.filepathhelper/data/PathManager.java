@@ -40,6 +40,9 @@ public class PathManager {
     }
 
     public void makeRelativePathAbsolute() {
+        final String homeDirectory = "C:\\Users\\itk20user";
+        final String currentWorkingDirectory = "C:\\Users\\itk20user\\Projekte\\FilePathHelper";
+
         String filePath = Paths.get(String.valueOf(testPath)).toString();
         System.out.println(filePath);
 
@@ -47,8 +50,8 @@ public class PathManager {
         while (s.hasNext()) {
             filePath = s.next();
             if (filePath != null) {
-                filePath = s.findInLine("~").replace("~", "C:\\Users\\itk20user");
-                filePath = s.findInLine(".").replace(".", "C:\\Users\\itk20user\\Projekte\\FilePathHelper");
+                filePath = s.findInLine("~").replace("~", homeDirectory);
+                filePath = s.findInLine(".").replace(".", currentWorkingDirectory);
                 filePath = s.findInLine("..").replace("..", "C:\\Users\\itk20user\\Projekte\\FilePathHelper\\main.java");
             }
 
