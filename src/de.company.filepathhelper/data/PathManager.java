@@ -3,9 +3,11 @@ package data;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Stream;
 
 public class PathManager {
 
@@ -39,7 +41,7 @@ public class PathManager {
         this.testPath = file;
     }
 
-    public void makeRelativePathAbsolute() {
+    public List<String> makeRelativePathAbsolute() {
         final String homeDirectory = "C:\\Users\\itk20user";
         final String currentWorkingDirectory = "C:\\Users\\itk20user\\Projekte\\FilePathHelper";
 
@@ -47,22 +49,41 @@ public class PathManager {
         System.out.println(filePath);
 
         // C:\Users\itk20user\Projekte\FilePathHelper\src\de.company.filepathhelper\data
-        while (s.hasNext()) {
-            filePath = s.next();
-            if (filePath != null) {
-                filePath = s.findInLine("~").replace("~", homeDirectory);
-                filePath = s.findInLine(".").replace(".", currentWorkingDirectory);
-                filePath = s.findInLine("..").replace("..", "C:\\Users\\itk20user\\Projekte\\FilePathHelper\\main.java");
-            }
+//        Stream.of(filePath)
+//                .map( e -> e.replaceFirst("~",homeDirectory )
+//                            .replaceFirst(".", currentWorkingDirectory)).forEach(System.out::println);
 
+        String path;
+        List<String> pathAsList = new ArrayList<>();
+
+        while (true) {
+            if (filePath.isEmpty()) break;
+            int anzahlZeichen = anzahlBisTrenner(filePath);
+            System.out.println(anzahlZeichen);
+            String wort = schneideWort(anzahlZeichen , filePath);
+            System.out.println(wort);
+            pathAsList.add(wort);
+            filePath = filePath.substring(anzahlZeichen + 1);
+            System.out.println(filePath);
         }
-        this.testPath = file;
-        System.out.println(filePath);
+        return pathAsList;
     }
+
+    private static String schneideWort(int anzahlZeichen, String filePath) {
+        return filePath.substring(0, anzahlZeichen );
+    }
+
+    private static int anzahlBisTrenner(String filePath) {
+        return filePath.indexOf("\\", 0);
+    }
+
+
+
+
 
     public void pathBuilder() {
 
-        List<Integer> list = Arrays.asList(1, -1, -1, 4);
+        List<Integer> list = Arrays.asList(1, -1, 3, 4);
         List<Integer> list2 = ListTool.invertUsingStreams(list);
         list2.stream().forEach(System.out::println);
 
