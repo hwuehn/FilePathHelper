@@ -41,7 +41,7 @@ public class PathManager {
         this.testPath = file;
     }
 
-    public List<String> makeRelativePathAbsolute() {
+    public void makeRelativePathAbsolute() {
         final String homeDirectory = "C:\\Users\\itk20user";
         final String currentWorkingDirectory = "C:\\Users\\itk20user\\Projekte\\FilePathHelper";
 
@@ -53,20 +53,21 @@ public class PathManager {
 //                .map( e -> e.replaceFirst("~",homeDirectory )
 //                            .replaceFirst(".", currentWorkingDirectory)).forEach(System.out::println);
 
-        String path;
         List<String> pathAsList = new ArrayList<>();
+        String path = filePath;
+        String wort;
 
         while (true) {
-            if (filePath.isEmpty()) break;
-            int anzahlZeichen = anzahlBisTrenner(filePath);
-            System.out.println(anzahlZeichen);
-            String wort = schneideWort(anzahlZeichen , filePath);
-            System.out.println(wort);
+            if (path.isEmpty()) break;
+            int anzahlZeichen = anzahlBisTrenner(path);
+            wort = schneideWort(anzahlZeichen , path);
             pathAsList.add(wort);
-            filePath = filePath.substring(anzahlZeichen + 1);
-            System.out.println(filePath);
+            path = path.substring(anzahlZeichen + 1);
+
         }
-        return pathAsList;
+
+        System.out.println(pathAsList);
+
     }
 
     private static String schneideWort(int anzahlZeichen, String filePath) {
@@ -74,8 +75,15 @@ public class PathManager {
     }
 
     private static int anzahlBisTrenner(String filePath) {
-        return filePath.indexOf("\\", 0);
+        if (true) {
+            filePath.contains("\\");
+            return filePath.indexOf("\\", 0);
+        }
+        else
+            return filePath.length();
+
     }
+
 
 
 
